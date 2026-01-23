@@ -1,1 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Derrick - Member Page</title>
 
+  <link rel="icon" href="/favicon.ico" />
+
+  <style>
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:#0b1020;
+      color:#e9ecf5;
+      padding:40px 18px;
+    }
+    .wrap{max-width:850px;margin:0 auto;}
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(255,255,255,.06);
+      padding:18px;
+    }
+    a{color:#a5b4fc}
+    button{
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);
+      color:#e9ecf5;
+      padding:10px 14px;
+      border-radius:12px;
+      cursor:pointer;
+    }
+    button:hover{background:rgba(255,255,255,.12)}
+    .muted{color:rgba(233,236,245,.7)}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    code{background:rgba(0,0,0,.25);padding:2px 6px;border-radius:8px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Derrick Burton </h1>
+      <p class="muted">• Personal page • </p>
+
+      <p>
+        There's a lot of things I like to do and there's more I don't. I derive much enjoyment from reading, learning, spending time with loved ones, messing with people, etc. Recently though, I find I enjoy trunkd.
+      </p>
+
+      <div class="row">
+        <button id="btn">Generate random “status”</button>
+        <p id="out" class="muted">Click the button.</p>
+      </div>
+
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:16px 0">
+
+      <p>
+        Back to the <a href="/">main page</a>.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const statuses = [
+      "Getting trunkd.",
+      "Getting others trunkd.",
+      "About to watch you get trunkd.",
+      "Deploying from GitHub (hopefully).",
+      "Reading.",
+      "Trunkd.",
+    ];
+
+    document.getElementById("btn").addEventListener("click", () => {
+      const pick = statuses[Math.floor(Math.random() * statuses.length)];
+      document.getElementById("out").textContent = pick;
+    });
+  </script>
+</body>
+</html>
