@@ -1,1 +1,328 @@
-d
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1" >
+  <title>CSE 135 – Main Page</title>
+
+  <!-- Avoid silent 404s: create /favicon.ico later -->
+  <link rel="icon" href="/favicon.ico" >
+
+   <style>
+    :root{
+      /* UPDATED: paler + lighter + greener */
+      --bg0:#07120d;              /* deep green-black */
+      --bg1:#0b1c14;              /* forest tint */
+      --card:rgba(255,255,255,.08);
+      --card2:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.14);
+      --text:#e9ecf5;
+      --muted:rgba(233,236,245,.72);
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+      --r:18px;
+
+      /* accents shifted greener + slightly brighter */
+      --accent1:#22c55e; /* green */
+      --accent2:#38bdf8; /* sky */
+      --accent3:#86efac; /* mint */
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text);
+      background:
+    radial-gradient(1100px 600px at 10% 10%, rgba(52,211,153,.32), transparent 58%),
+    radial-gradient(900px 520px at 95% 15%, rgba(125,211,252,.22), transparent 58%),
+    radial-gradient(700px 480px at 70% 95%, rgba(187,247,208,.22), transparent 62%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+      padding:48px 18px 72px;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a:focus-visible, button:focus-visible{ outline:3px solid rgba(56,189,248,.55); outline-offset:3px; border-radius:12px; }
+
+    .wrap{ max-width:1100px; margin:0 auto; }
+
+    header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      backdrop-filter: blur(10px);
+      font-size:13px;
+      color:var(--muted);
+      width:fit-content;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(135deg, var(--accent1), var(--accent2));
+      box-shadow:0 0 0 3px rgba(124,58,237,.18);
+    }
+
+    h1{
+      margin:14px 0 6px;
+      font-size:44px;
+      letter-spacing:-0.03em;
+      line-height:1.05;
+    }
+    .sub{ margin:0; color:var(--muted); font-size:16px; line-height:1.45; max-width:62ch; }
+
+    .clock{
+      text-align:right;
+      color:var(--muted);
+      font-size:13px;
+      padding-top:8px;
+    }
+    .clock strong{ color:rgba(233,236,245,.9); font-weight:600; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:18px;
+      align-items:start;
+    }
+
+    .card{
+      background:linear-gradient(180deg, var(--card), var(--card2));
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow:hidden;
+    }
+
+    .main-card{ padding:18px; }
+
+    .section{ margin-top:18px; }
+    .section:first-child{ margin-top:0; }
+
+    .section-head{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+    }
+    .section h2{ margin:0; font-size:18px; letter-spacing:-0.01em; }
+    .pill{
+      font-size:12px;
+      color:rgba(233,236,245,.85);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:6px 10px;
+      background:rgba(255,255,255,.04);
+      white-space:nowrap;
+    }
+
+    .tiles{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+
+    .tile{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(0,0,0,.18);
+      padding:12px;
+      min-height:78px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .tile:hover{
+      transform: translateY(-2px);
+      background:rgba(0,0,0,.24);
+      border-color: rgba(56,189,248,.25);
+    }
+    .tile .label{ font-weight:650; }
+    .tile .meta{ font-size:12px; color:var(--muted); }
+
+    .tbd{
+      border:1px dashed rgba(255,255,255,.2);
+      background:rgba(0,0,0,.12);
+      border-radius:14px;
+      padding:12px;
+      color:rgba(233,236,245,.62);
+    }
+
+    /* Sidebar */
+    .side-card{ padding:16px; position:sticky; top:18px; }
+    .side-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .side-top h2{ margin:0; font-size:16px; }
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(124,58,237,.35);
+      background:rgba(124,58,237,.12);
+      color:rgba(233,236,245,.9);
+    }
+    .side-desc{
+      margin:0 0 12px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .member{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(0,0,0,.16);
+      margin-top:10px;
+      transition: background .12s ease, transform .12s ease;
+    }
+    .member:hover{ background:rgba(0,0,0,.22); transform: translateY(-1px); }
+    .avatar{
+      width:36px;height:36px;border-radius:12px;
+      background:linear-gradient(135deg, rgba(56,189,248,.9), rgba(34,197,94,.8));
+      box-shadow: 0 12px 30px rgba(56,189,248,.12);
+      flex:0 0 auto;
+    }
+    .member .name{ font-weight:650; }
+    .member .role{ display:block; font-size:12px; color:var(--muted); margin-top:2px; }
+
+    footer{
+      margin-top:18px;
+      color:rgba(233,236,245,.55);
+      font-size:12px;
+      text-align:center;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      header{ flex-direction:column; }
+      .clock{ text-align:left; }
+      .grid{ grid-template-columns:1fr; }
+      .side-card{ position:static; }
+    }
+    @media (max-width: 720px){
+      h1{ font-size:36px; }
+      .tiles{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="kicker"><span class="dot" aria-hidden="true"></span> CSE 135 • Main Page</div>
+        <h1>Resources Hub</h1>
+        <h2> Winter 2026 </h2>
+        <p class="sub">
+          A clean landing page for graders: homework links, analytics app placeholder,
+          and member pages. Links are stubs for now.
+        </p>
+      </div>
+
+      <div class="clock" aria-live="polite">
+        <div><strong>Server time</strong></div>
+        <div id="time">--:--:--</div>
+        <div id="date">----</div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <main class="card main-card">
+        <section class="section">
+          <div class="section-head">
+            <h2>Homework 1</h2>
+            <span class="pill">Status: In progress</span>
+          </div>
+
+          <div class="tiles">
+            <a class="tile" href="#" aria-label="Homework 1 PHP (stub link)">
+              <div class="label">PHP</div>
+              <div class="meta">Stub link</div>
+            </a>
+
+            <a class="tile" href="#" aria-label="Homework 1 Node (stub link)">
+              <div class="label">Node</div>
+              <div class="meta">Stub link</div>
+            </a>
+
+            <a class="tile" href="#" aria-label="Homework 1 Analytics (stub link)">
+              <div class="label">Analytics</div>
+              <div class="meta">Stub link</div>
+            </a>
+          </div>
+        </section>
+
+    
+      </main>
+
+      <aside class="card side-card">
+        <div class="side-top">
+          <h2>Team of One</h2>
+          <span class="badge">trunkd supremacy</span>
+        </div>
+
+        <p class="side-desc">
+          Trying to figure it out alone, just click on my name to access my personal page.
+        </p>
+
+        <!-- Stub member cards -->
+      <a class="member" href="/members/derrick.html" aria-label="Member page Derrick Burton">
+  <div class="avatar" aria-hidden="true"></div>
+  <span class="name">Derrick Burton</span>
+</a>
+
+        
+
+      </aside>
+    </div>
+
+    <footer>
+      © <span id="year">2026</span> • CSE 135 Team Portal • Links intentionally non-functional for this stage.
+    </footer>
+  </div>
+
+  <script>
+    // Cosmetic only: live clock + year (no site "functionality")
+    function pad(n){ return String(n).padStart(2, "0"); }
+
+    function renderTime(){
+      const now = new Date();
+      const hh = pad(now.getHours());
+      const mm = pad(now.getMinutes());
+      const ss = pad(now.getSeconds());
+
+      const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      const dateStr = `${months[now.getMonth()]} ${pad(now.getDate())}, ${now.getFullYear()}`;
+
+      document.getElementById("time").textContent = `${hh}:${mm}:${ss}`;
+      document.getElementById("date").textContent = dateStr;
+      document.getElementById("year").textContent = String(now.getFullYear());
+    }
+
+    renderTime();
+    setInterval(renderTime, 1000);
+  </script>
+</body>
+</html>
