@@ -8,3 +8,11 @@
 - Grader htpassword: copiCt9pios
 ## Site Link
 - https://tunkd.com
+## Github Auto Deploy Setup
+Created a new GitHub repository, copied and added all the relevant files and relevant directories. Created and authorized SSH key in droplet for GitHub deploying. Added three GitHub Secrets to the repository, DEPLOY_HOST (droplet IP), DEPLOY_USER (derrick, my user on droplet), and DEPLOY_KEY(private SSH key). Then added a GitHub Actions workflow .github/workflows/deploy.yml using the secrets to deploy to droplet on push.
+## Username/Password
+- My Username: derrick
+- My Droplet User Password: urB1s4la$c
+- My htpassword: baRotru3s
+## HTML File Changes After Compression
+After compressing,
