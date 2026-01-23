@@ -15,4 +15,5 @@ Created a new GitHub repository, copied and added all the relevant files and rel
 - My Droplet User Password: urB1s4la$c
 - My htpassword: baRotru3s
 ## HTML File Changes After Compression
-After compressing,
+After my enabling of Apache mod_deflate, DevTools showed that the responses were compressed. The HTML response in DevTools now show 
+Content-Encoding: gzip, Vary: Accept-Encoding, and a reduced Content-Length.
