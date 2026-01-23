@@ -17,3 +17,5 @@ Created a new GitHub repository, copied and added all the relevant files and rel
 ## HTML File Changes After Compression
 After my enabling of Apache mod_deflate, DevTools showed that the responses were compressed. The HTML response in DevTools now show 
 Content-Encoding: gzip, Vary: Accept-Encoding, and a reduced Content-Length.
+## Removing Server Header
+I first installed and enabled ModSecurity, then created a custom conf for server headers, and edited it to set SecServerSignature "CSE 135 Server". After enabling it, Apache responses display this custom Server header instead of the default.
